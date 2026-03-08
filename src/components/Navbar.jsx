@@ -1,4 +1,5 @@
 import UniformSizeButton from "./UniformSizeButton"
+import InformationToggle from "./InformationToggle"
 
 const planets = [
   "Mercury",
@@ -11,7 +12,7 @@ const planets = [
   "Neptune",
 ];
 
-export default function Navbar({currentPage, setPage, isUniformSize, setUniformSize}) {
+export default function Navbar({currentPage, setPage, isUniformSize, setUniformSize, isInformationOn, setInformationToggle}) {
   return (
     <div className="absolute z-1 w-screen">
       <nav className="flex justify-center gap-8 flex-wrap p-5">
@@ -36,8 +37,9 @@ export default function Navbar({currentPage, setPage, isUniformSize, setUniformS
           );
         })}
       </nav>
-      <div className="w-full flex justify-center">
+      <div className="w-full flex justify-center gap-3">
         <UniformSizeButton isUniformSize={isUniformSize} setUniformSize={setUniformSize}/>
+        <InformationToggle isInformationOn={isInformationOn} setInformationToggle={setInformationToggle}/>
       </div>
     </div>
   );

@@ -12,7 +12,7 @@ const sizes = {
 export default function PlanetSize({currentPage}) {
     return (
         <section className="w-1/3 relative h-screen">
-            <div className="w-full absolute top-7/10">
+            <div className="w-full absolute top-6/10">
                 <h1 className="text-xl font-medium">Size</h1>
                 <p className="text-[8px] opacity-40 uppercase tracking-[0.2em]">{sizes[currentPage]}</p>
             </div>
