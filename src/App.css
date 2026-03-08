@@ -7,7 +7,7 @@ body {
     box-sizing: border-box;
     background-color: black;
     overflow: hidden;
-    /* background-image: url("/Background.png");
+    background-image: url("/Background.jpg");
     background-size: cover;     
-    background-position: center;  */
+    background-position: center; 
 }
