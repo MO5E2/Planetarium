@@ -9,8 +9,17 @@ import Uranus from "./components/Uranus";
 import Neptune from "./components/Neptune";
 import "./App.css";
 import { useState } from "react";
-import { Canvas } from "@react-three/fiber";
+import { Canvas, useLoader } from "@react-three/fiber";
 import Planet from "./components/Planet";
+import { TextureLoader } from "three";
+import MercuryTexture from "./assets/MercuryTexture.jpg";
+import VenusTexture from "./assets/VenusTexture.jpg";
+import EarthTexture from "./assets/EarthTexture.jpg";
+import MarsTexture from "./assets/MarsTexture.jpg";
+import JupiterTexture from "./assets/JupiterTexture.jpg";
+import SaturnTexture from "./assets/SaturnTexture.jpg";
+import UranusTexture from "./assets/UranusTexture.jpg";
+import NeptuneTexture from "./assets/NeptuneTexture.jpg";
 
 function App() {
   const [currentPage, setPage] = useState("Earth");
@@ -37,6 +46,17 @@ function App() {
     }
   };
 
+  const textures = {
+    Mercury: useLoader(TextureLoader, MercuryTexture),
+    Venus:   useLoader(TextureLoader, VenusTexture),
+    Earth:   useLoader(TextureLoader, EarthTexture),
+    Mars:    useLoader(TextureLoader, MarsTexture),
+    Jupiter: useLoader(TextureLoader, JupiterTexture),
+    Saturn:  useLoader(TextureLoader, SaturnTexture),
+    Uranus:  useLoader(TextureLoader, UranusTexture),
+    Neptune: useLoader(TextureLoader, NeptuneTexture),
+  }
+
   return (
     <div className="w-screen h-screen">
       <Navbar currentPage={currentPage} setPage={setPage} isUniformSize={isUniformSize} setUniformSize={setUniformSize}/>
@@ -45,7 +65,7 @@ function App() {
           <Canvas>
             <ambientLight intensity={0.3} />
             <directionalLight intensity={5} position={[1, 1, 0]} color="white" />
-            <Planet currentPage={currentPage} isUniformSize={isUniformSize}/>
+            <Planet currentPage={currentPage} isUniformSize={isUniformSize} texture={textures[currentPage]}/>
           </Canvas>
         </div>
         <div className="mt-30">
