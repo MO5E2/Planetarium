@@ -21,31 +21,13 @@ import SaturnTexture from "./assets/SaturnTexture.jpg";
 import UranusTexture from "./assets/UranusTexture.jpg";
 import NeptuneTexture from "./assets/NeptuneTexture.jpg";
 import { OrbitControls } from "@react-three/drei";
+import PlanetTitle from "./components/PlanetTitle"
+import PlanetTemperature from "./components/PlanetTemperature"
+import PlanetSize from "./components/PlanetSize"
 
 function App() {
   const [currentPage, setPage] = useState("Earth");
   const [isUniformSize, setUniformSize] = useState(false);
-
-  const displayPlanetInfo = () => {
-    switch (currentPage) {
-      case "Mercury":
-        return <Mercury />;
-      case "Venus":
-        return <Venus />;
-      case "Earth":
-        return <Earth />;
-      case "Mars":
-        return <Mars />;
-      case "Jupiter":
-        return <Jupiter />;
-      case "Saturn":
-        return <Saturn />;
-      case "Uranus":
-        return <Uranus />;
-      case "Neptune":
-        return <Neptune />;
-    }
-  };
 
   const textures = {
     Mercury: useLoader(TextureLoader, MercuryTexture),
@@ -61,17 +43,19 @@ function App() {
   return (
     <div className="w-screen h-screen">
       <Navbar currentPage={currentPage} setPage={setPage} isUniformSize={isUniformSize} setUniformSize={setUniformSize}/>
-      <main className="w-screen h-screen absolute ">
-        <div id="canvas-container" className="h-full w-full absolute">
+      <main className="w-screen h-screen absolute">
+        <div className="absolute z-100 w-screen h-screen flex justify-between pointer-events-none bg-none">
+          <PlanetTitle currentPage={currentPage}/>
+          <PlanetTemperature currentPage={currentPage}/>
+          <PlanetSize currentPage={currentPage}/>
+        </div>
+        <div id="canvas-container" className="h-full w-full">
           <Canvas>
             <ambientLight intensity={0.3} />
             <directionalLight intensity={5} position={[1, 1, 0]} color="white" />
             <Planet currentPage={currentPage} isUniformSize={isUniformSize} texture={textures[currentPage]}/>
             <OrbitControls zoomSpeed={.5} enableRotate={true} minDistance={(isUniformSize ? 4: 1)} maxDistance={(isUniformSize ? 10: 5)} enableZoom={true} enablePan={false}/>
           </Canvas>
-        </div>
-        <div className="mt-30">
-          {displayPlanetInfo()} 
         </div>
       </main>
     </div>

@@ -13,7 +13,7 @@ const planets = [
 
 export default function Navbar({currentPage, setPage, isUniformSize, setUniformSize}) {
   return (
-    <div className="absolute z-1 w-full">
+    <div className="absolute z-1 w-screen">
       <nav className="flex justify-center gap-8 flex-wrap p-5">
         {planets.map((planetName, index) => {
           return (
