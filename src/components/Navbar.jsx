@@ -1,3 +1,5 @@
+import UniformSizeButton from "./UniformSizeButton"
+
 const planets = [
   "Mercury",
   "Venus",
@@ -9,29 +11,34 @@ const planets = [
   "Neptune",
 ];
 
-export default function Navbar({currentPage, setPage}) {
+export default function Navbar({currentPage, setPage, isUniformSize, setUniformSize}) {
   return (
-    <nav className="flex w-full justify-center gap-8 flex-wrap p-5 absolute z-1">
-      {planets.map((planetName, index) => {
-        return (
-          <button
-            onClick={function (x) {
-              setPage(planetName);
-              // if (
-              //   x.target.innerText.toLowerCase() != currentPage.toLowerCase()
-              // ) {
-              //   const index = planets.indexOf(planetName);
-              //   planets.splice(index, 1);
-              //   planets.push(planetName);
-              // }
-            }}
-            className={`text-sm uppercase tracking-[0.3em] transition-colors active:text-gray-600 hover:text-white ${currentPage === planetName ? "text-white" : "text-white/40"}`}
-            key={index}
-          >
-            {planetName}
-          </button>
-        );
-      })}
-    </nav>
+    <div className="absolute z-1 w-full">
+      <nav className="flex justify-center gap-8 flex-wrap p-5">
+        {planets.map((planetName, index) => {
+          return (
+            <button
+              onClick={function (x) {
+                setPage(planetName);
+                // if (
+                //   x.target.innerText.toLowerCase() != currentPage.toLowerCase()
+                // ) {
+                //   const index = planets.indexOf(planetName);
+                //   planets.splice(index, 1);
+                //   planets.push(planetName);
+                // }
+              }}
+              className={`text-sm uppercase tracking-[0.3em] transition-colors active:text-gray-600 hover:text-white ${currentPage === planetName ? "text-white" : "text-white/40"}`}
+              key={index}
+            >
+              {planetName}
+            </button>
+          );
+        })}
+      </nav>
+      <div className="w-full flex justify-center">
+        <UniformSizeButton isUniformSize={isUniformSize} setUniformSize={setUniformSize}/>
+      </div>
+    </div>
   );
 }

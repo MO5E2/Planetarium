@@ -11,7 +11,6 @@ import "./App.css";
 import { useState } from "react";
 import { Canvas } from "@react-three/fiber";
 import Planet from "./components/Planet";
-import UniformSizeButton from './components/UniformSizeButton'
 
 function App() {
   const [currentPage, setPage] = useState("Earth");
@@ -40,7 +39,7 @@ function App() {
 
   return (
     <div className="w-screen h-screen">
-      <Navbar currentPage={currentPage} setPage={setPage}/>
+      <Navbar currentPage={currentPage} setPage={setPage} isUniformSize={isUniformSize} setUniformSize={setUniformSize}/>
       <main className="w-screen h-screen absolute ">
         <div id="canvas-container" className="h-full w-full absolute -z-10">
           <Canvas>
@@ -50,7 +49,6 @@ function App() {
           </Canvas>
         </div>
         <div className="mt-30">
-          <UniformSizeButton isUniformSize={isUniformSize} setUniformSize={setUniformSize}/>
           {displayPlanetInfo()} 
         </div>
       </main>
