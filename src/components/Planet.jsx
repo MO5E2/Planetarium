@@ -56,12 +56,12 @@ const visualData = {
 
 export default function Planet({currentPage, isUniformSize}) {
     const { viewport } = useThree();
-    const radius = isUniformSize ? 0.25: Math.min(viewport.width * visualData[currentPage].radiusRatio, viewport.width/ 4);
+    const radius = isUniformSize ? 3: Math.min(viewport.width * visualData[currentPage].radiusRatio, viewport.width/ 4);
     const meshRef = useRef()
 
     useFrame((state, delta) => {
       if (meshRef.current) {
-        meshRef.current.rotation.y += visualData[currentPage].spinSpeed * delta;
+        meshRef.current.rotation.y += (isUniformSize ? .01: visualData[currentPage].spinSpeed) * delta;
       }
     })
 

@@ -11,7 +11,7 @@ const planets = [
 
 export default function Navbar({currentPage, setPage}) {
   return (
-    <nav className="flex justify-center gap-8 flex-wrap p-5">
+    <nav className="flex justify-center gap-8 flex-wrap p-5 absolute z-1">
       {planets.map((planetName, index) => {
         return (
           <button

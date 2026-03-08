@@ -41,17 +41,17 @@ function App() {
   return (
     <div className="w-screen h-screen">
       <Navbar currentPage={currentPage} setPage={setPage}/>
-      <UniformSizeButton isUniformSize={isUniformSize} setUniformSize={setUniformSize}/>
-      <main className="relative w-full h-full">
-        <div id="info-container" className="absolute">
-          {displayPlanetInfo()}
-        </div>
-        <div id="canvas-container" className="h-full">
+      <main className="w-screen h-screen absolute ">
+        <div id="canvas-container" className="h-full w-full absolute -z-10">
           <Canvas>
             <ambientLight intensity={0.3} />
             <directionalLight intensity={5} position={[1, 1, 0]} color="white" />
-            <Planet currentPage={currentPage}/>
+            <Planet currentPage={currentPage} isUniformSize={isUniformSize}/>
           </Canvas>
+        </div>
+        <div className="mt-30">
+          <UniformSizeButton isUniformSize={isUniformSize} setUniformSize={setUniformSize}/>
+          {displayPlanetInfo()} 
         </div>
       </main>
     </div>
