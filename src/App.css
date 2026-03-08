@@ -5,4 +5,8 @@ body {
     font-family: "Space Grotesk", sans-serif;
     color: white;
     box-sizing: border-box;
+    background-color: black;
+    /* background-image: url("/Background.png");
+    background-size: cover;     
+    background-position: center;  */
 }

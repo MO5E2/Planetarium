@@ -1,28 +1,58 @@
 import Navbar from "./components/Navbar";
-import PageOne from "./components/PageOne";
-import PageTwo from "./components/PageTwo";
+import Mercury from "./components/Mercury";
+import Venus from "./components/Venus";
+import Earth from "./components/Earth";
+import Mars from "./components/Mars";
+import Jupiter from "./components/Jupiter";
+import Saturn from "./components/Saturn";
+import Uranus from "./components/Uranus";
+import Neptune from "./components/Neptune";
 import "./App.css";
-import Earth from "./assets/Earth.png";
-import Sun from "./assets/Sun.png";
-import Background from "./assets/Background.png";
 import { useState } from "react";
+import { Canvas } from "@react-three/fiber";
+import Planet from "./components/Planet";
+import UniformSizeButton from './components/UniformSizeButton'
 
 function App() {
   const [currentPage, setPage] = useState("Earth");
-  const displayPage = () => {
+  const [isUniformSize, setUniformSize] = useState(false);
+
+  const displayPlanetInfo = () => {
     switch (currentPage) {
+      case "Mercury":
+        return <Mercury />;
+      case "Venus":
+        return <Venus />;
       case "Earth":
-        return <PageOne />;
-      case "Sun":
-        return <PageTwo />;
+        return <Earth />;
+      case "Mars":
+        return <Mars />;
+      case "Jupiter":
+        return <Jupiter />;
+      case "Saturn":
+        return <Saturn />;
+      case "Uranus":
+        return <Uranus />;
+      case "Neptune":
+        return <Neptune />;
     }
-  }
-  
+  };
+
   return (
-    <div className="bg-black min-w-dvw min-h-dvh">
-      <Navbar currentPage={currentPage} setPage={setPage} />
-      <main className={{}}>
-        {displayPage()}
+    <div className="w-screen h-screen">
+      <Navbar currentPage={currentPage} setPage={setPage}/>
+      <UniformSizeButton isUniformSize={isUniformSize} setUniformSize={setUniformSize}/>
+      <main className="relative w-full h-full">
+        <div id="info-container" className="absolute">
+          {displayPlanetInfo()}
+        </div>
+        <div id="canvas-container" className="h-full">
+          <Canvas>
+            <ambientLight intensity={0.3} />
+            <directionalLight intensity={5} position={[1, 1, 0]} color="white" />
+            <Planet currentPage={currentPage}/>
+          </Canvas>
+        </div>
       </main>
     </div>
   );
