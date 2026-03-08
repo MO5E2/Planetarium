@@ -20,6 +20,7 @@ import JupiterTexture from "./assets/JupiterTexture.jpg";
 import SaturnTexture from "./assets/SaturnTexture.jpg";
 import UranusTexture from "./assets/UranusTexture.jpg";
 import NeptuneTexture from "./assets/NeptuneTexture.jpg";
+import { OrbitControls } from "@react-three/drei";
 
 function App() {
   const [currentPage, setPage] = useState("Earth");
@@ -61,11 +62,12 @@ function App() {
     <div className="w-screen h-screen">
       <Navbar currentPage={currentPage} setPage={setPage} isUniformSize={isUniformSize} setUniformSize={setUniformSize}/>
       <main className="w-screen h-screen absolute ">
-        <div id="canvas-container" className="h-full w-full absolute -z-10">
+        <div id="canvas-container" className="h-full w-full absolute">
           <Canvas>
             <ambientLight intensity={0.3} />
             <directionalLight intensity={5} position={[1, 1, 0]} color="white" />
             <Planet currentPage={currentPage} isUniformSize={isUniformSize} texture={textures[currentPage]}/>
+            <OrbitControls zoomSpeed={.5} enableRotate={true} minDistance={(isUniformSize ? 4: 1)} maxDistance={(isUniformSize ? 10: 5)} enableZoom={true} enablePan={false}/>
           </Canvas>
         </div>
         <div className="mt-30">
