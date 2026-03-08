@@ -1,4 +1,4 @@
-PLANETARIUM
+PLANETARIUM\n
 An interactive and educational 3D web app that allows users to explore an orbital view of each of the planets in our solar system and an overview of their temperature and size.
 
 PURPOSE
